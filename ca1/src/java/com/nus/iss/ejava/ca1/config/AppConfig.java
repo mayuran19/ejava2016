@@ -12,7 +12,7 @@ import javax.ws.rs.core.Application;
  *
  * @author mayuran
  */
-@ApplicationPath(value = "app")
+@ApplicationPath(value = "/api")
 public class AppConfig extends Application{
     
 }
