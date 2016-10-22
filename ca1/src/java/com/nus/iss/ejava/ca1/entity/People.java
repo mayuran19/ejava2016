@@ -1,3 +1,4 @@
+
 package com.nus.iss.ejava.ca1.entity;
 
 import javax.persistence.Entity;
