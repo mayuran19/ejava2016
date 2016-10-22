@@ -1,5 +1,6 @@
 package com.nus.iss.ejava.ca1.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -7,10 +8,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 
-
-
 @Entity
-public class Appointment {
+public class Appointment implements Serializable {
     
     @Id
     @GeneratedValue(strategy=IDENTITY)

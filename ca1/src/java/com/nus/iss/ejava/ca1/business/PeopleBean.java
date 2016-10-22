@@ -5,10 +5,12 @@
  */
 package com.nus.iss.ejava.ca1.business;
 
+import com.nus.iss.ejava.ca1.constant.AppConstant;
 import com.nus.iss.ejava.ca1.entity.People;
-import javax.annotation.Resource;
+import java.util.List;
 import javax.ejb.Stateless;
-import javax.sql.DataSource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -16,10 +18,15 @@ import javax.sql.DataSource;
  */
 @Stateless
 public class PeopleBean {
-    @Resource(lookup = "jdbc/appointment")
-    private DataSource dataSource;
+    @PersistenceContext(unitName = AppConstant.PERSISTENT_UNIT_NAME) EntityManager em;
     
     public People create(People people){
-        return null;
+        em.persist(people);
+        
+        return people;
+    }
+    
+    public List<People> findByEmail(){
+        return em.createNamedQuery("People.findByEmail", People.class).getResultList();
     }
 }

@@ -1,13 +1,15 @@
 
 package com.nus.iss.ejava.ca1.entity;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
+@NamedQuery(name = "People.findByEmail", query = "select p from com.nus.iss.ejava.ca1.entity.People where p.email = :email")
 
 @Entity
-public class People {
-    
+public class People implements Serializable {
     @Id
     private Integer pid;
     
@@ -40,8 +42,5 @@ public class People {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
-    
     
 }
