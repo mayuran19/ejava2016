@@ -6,15 +6,20 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
-@NamedQuery(name = "People.findByEmail", query = "select p from com.nus.iss.ejava.ca1.entity.People where p.email = :email")
+@NamedQuery(name = "People.findByEmail", query = "select p from People p where p.email = :email")
 
-@Entity
+@Entity(name = "People")
 public class People implements Serializable {
     @Id
     private Integer pid;
     
     private String name;
     private String email;
+
+    public People(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
     
     public People() {
     }
