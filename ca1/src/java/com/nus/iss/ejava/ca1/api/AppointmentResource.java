@@ -22,12 +22,12 @@ public class AppointmentResource {
 
         return Response.ok().build();
     }
-    
-    @GET
-    @Path("/{name}")
-    public Response getAllAppointmentsForPerson() {
-
-        return Response.ok().build();
-    }
+//    
+//    @GET
+//    @Path("/{name}")
+//    public Response getAllAppointmentsForPerson() {
+//
+//        return Response.ok().build();
+//    }
 
 }

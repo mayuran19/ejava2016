@@ -2,31 +2,39 @@ package com.nus.iss.ejava.ca1.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Appointment implements Serializable {
     
     @Id
+    @Column(name="appt_id")
     @GeneratedValue(strategy=IDENTITY)
-    private Integer appt_id;
+    private Integer apptId;
+    
     
     private String description;
-    private Date appt_date;
     
-    @EmbeddedId
-    private Integer pid;
+    @Column(name="appt_date")
+    private Date apptDate;
+    
+    @ManyToOne
+    @JoinColumn(name="pid", referencedColumnName = "pid")
+    private People people;
 
     public Integer getAppt_id() {
-        return appt_id;
+        return apptId;
     }
 
-    public void setAppt_id(Integer appt_id) {
-        this.appt_id = appt_id;
+    public void setAppt_id(Integer apptId) {
+        this.apptId = apptId;
     }
 
     public String getDescription() {
@@ -37,20 +45,20 @@ public class Appointment implements Serializable {
         this.description = description;
     }
 
-    public Date getAppt_date() {
-        return appt_date;
+    public Date getApptDate() {
+        return apptDate;
     }
 
-    public void setAppt_date(Date appt_date) {
-        this.appt_date = appt_date;
+    public void setApptDate(Date apptDate) {
+        this.apptDate = apptDate;
     }
 
-    public Integer getPid() {
-        return pid;
+    public People getPeople() {
+        return people;
     }
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
+    public void setPeople(People people) {
+        this.people = people;
     }
     
     

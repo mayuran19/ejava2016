@@ -2,9 +2,11 @@
 package com.nus.iss.ejava.ca1.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 @NamedQuery(name = "People.findByEmail", query = "select p from People p where p.email = :email")
 
@@ -15,6 +17,9 @@ public class People implements Serializable {
     
     private String name;
     private String email;
+    
+    @OneToMany(mappedBy= "people")
+    List<Appointment> appointments;
 
     public People(String name, String email) {
         this.name = name;
