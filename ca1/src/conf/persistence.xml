@@ -3,6 +3,8 @@
   <persistence-unit name="appointment" transaction-type="JTA">
     <jta-data-source>jdbc/appointment</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties/>
+    <properties>
+        <property name="eclipselink.logging.level.sql" value="FINE"/>
+    </properties>
   </persistence-unit>
 </persistence>

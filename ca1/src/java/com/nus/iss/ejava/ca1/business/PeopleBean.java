@@ -8,7 +8,6 @@ package com.nus.iss.ejava.ca1.business;
 import com.nus.iss.ejava.ca1.constant.AppConstant;
 import com.nus.iss.ejava.ca1.entity.People;
 import java.util.List;
-import java.util.UUID;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,7 +27,15 @@ public class PeopleBean {
         return people;
     }
     
-    public List<People> findByEmail(String email){
-        return em.createNamedQuery("People.findByEmail", People.class).setParameter("email", email).getResultList();
+    public People findByEmail(String email){
+        System.out.println("email:" + email);
+        People p = null;
+        try{
+            p = em.createNamedQuery("People.findByEmail", People.class).setParameter("email", email).getSingleResult();
+        }catch(Exception e){
+            System.out.println("No record found");
+        }
+        System.out.println("dddd:" + p);
+        return p;
     }
 }

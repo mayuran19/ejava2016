@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQuery(name = "Appointment.findByEmail", query = "select p.appointments from People p join p.appointments app where p.email = :email")
+@NamedQuery(name = "Appointment.findByEmail", query = "select p.appointments from People p where p.email = :email")
 
 @Entity(name = "Appointment")
 @Table(name = "appointment")
@@ -32,11 +32,11 @@ public class Appointment implements Serializable {
     @JoinColumn(name = "pid", referencedColumnName = "pid")
     private People people;
 
-    public Integer getAppt_id() {
+    public Integer getApptId() {
         return apptId;
     }
 
-    public void setAppt_id(Integer apptId) {
+    public void setApptId(Integer apptId) {
         this.apptId = apptId;
     }
 
