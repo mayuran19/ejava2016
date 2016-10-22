@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQuery(name = "Appointment.findByEmail", query = "select p.appointments from People p join p.appointments where p.email = :email")
+@NamedQuery(name = "Appointment.findByEmail", query = "select p.appointments from People p join p.appointments app where p.email = :email")
 
 @Entity(name = "Appointment")
 @Table(name = "appointments")
