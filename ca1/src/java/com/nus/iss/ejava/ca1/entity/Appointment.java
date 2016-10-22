@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @NamedQuery(name = "Appointment.findByEmail", query = "select p.appointments from People p join p.appointments app where p.email = :email")
 
 @Entity(name = "Appointment")
-@Table(name = "appointments")
+@Table(name = "appointment")
 public class Appointment implements Serializable {
 
     @Id

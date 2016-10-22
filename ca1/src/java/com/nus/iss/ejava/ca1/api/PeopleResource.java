@@ -4,6 +4,8 @@ import com.nus.iss.ejava.ca1.business.PeopleBean;
 import com.nus.iss.ejava.ca1.entity.People;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.json.Json;
+import javax.json.JsonObjectBuilder;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
@@ -34,6 +36,8 @@ public class PeopleResource {
     @GET
     public Response findByEmail(@QueryParam("email") String email) {
         List<People> peoples = peopleBean.findByEmail(email);
+        
+        System.out.println("people:" + peoples.size());
         return Response.ok(peoples).build();
     }
 
