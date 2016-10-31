@@ -1,0 +1,20 @@
+{
+  "name": "ca2",
+  "homepage": "https://github.com/mayuran19/ejava2016",
+  "authors": [
+    "Mugunthan", "Mayuran", "William"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
