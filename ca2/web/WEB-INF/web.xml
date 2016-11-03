@@ -31,6 +31,7 @@
             <web-resource-name>secure</web-resource-name>
             <description/>
             <url-pattern>/secure/*</url-pattern>
+            <!--<url-pattern>/notes/*</url-pattern>-->
         </web-resource-collection>
         <web-resource-collection>
             <web-resource-name>jsf-secure</web-resource-name>
