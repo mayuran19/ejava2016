@@ -13,8 +13,10 @@ import com.nus.iss.ejava.ca2.entity.User;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -62,11 +64,12 @@ public class NoteBean implements Serializable {
     }
     
     public String addNote(){
-        
-        User user = (User) userDao.find("abc"); //Need to change with logged User
+        FacesContext fc = FacesContext.getCurrentInstance(); 
+        HttpServletRequest req = (HttpServletRequest) fc.getExternalContext().getRequest();
+        User user = (User) userDao.find(req.getRemoteUser());
         
         Note note = new Note(title, user, new Date(), Category.valueOf(category), content);
         noteDao.create(note);
-        return "/login.xhtml";
+        return "/secure/notes/list.xhtml";
     }
 }
