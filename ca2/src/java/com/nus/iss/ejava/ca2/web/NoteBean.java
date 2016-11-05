@@ -70,6 +70,6 @@ public class NoteBean implements Serializable {
         
         Note note = new Note(title, user, new Date(), Category.valueOf(category), content);
         noteDao.create(note);
-        return "/secure/notes/list.xhtml";
+        return "/secure/notes/list?faces-redirect=true";
     }
 }
