@@ -6,6 +6,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @ViewScoped
 @Named
@@ -36,14 +37,22 @@ public class LoginBean implements Serializable {
                 = (HttpServletRequest) FacesContext.getCurrentInstance()
                 .getExternalContext().getRequest();
         try {
+            System.out.println("username:" + username);
+            System.out.println("password:" + password);
             req.login(username, password);
         } catch (Throwable t) {
+            t.printStackTrace();
             FacesContext.getCurrentInstance()
                     .addMessage("loginform", new FacesMessage("Incorrect username/password"));
             return (null);
         }
 
-        return ("secure/notes");
+        return ("secure/notes/list?faces-redirect=true");
+    }
+    
+    public String logout(){
+        ((HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false)).invalidate();
+        return ("/login?faces-redirect=true");
     }
 
 }

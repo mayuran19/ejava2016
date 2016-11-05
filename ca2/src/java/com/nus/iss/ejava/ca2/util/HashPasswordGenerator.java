@@ -7,7 +7,6 @@ package com.nus.iss.ejava.ca2.util;
 
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
-import java.nio.charset.Charset;
 
 /**
  *
