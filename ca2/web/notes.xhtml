@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Posted Notes</title>
+        <h:outputScript name="js/jquery.min.js" />
+        <h:outputScript name="js/bootstrap.min.js"/>
+        <h:outputScript name="js/app.js"/>
+        <h:outputStylesheet name="css/bootstrap.css"/>
+    </h:head>
+    <h:body>
+        <h:form prependId="false">
+            <h:inputHidden id="socket-url" value="#{noteBean.socketURL}"></h:inputHidden>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><h:link value="Create Note" outcome="/secure/notes/create"></h:link></li>
+                            <li><h:link value="Posted Notes" outcome="/secure/notes/list"></h:link></li>
+                            <li><h:commandLink value="Logout" action="#{loginBean.logout()}"></h:commandLink></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </h:form>
+        <div class="container">
+            <h1>All Notes</h1>
+            <h:dataTable value="#{noteBean.allNotes}" var="note" id="tbl-notes"
+                         styleClass="table table-striped table-hover table-bordered">
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{note.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Category</f:facet>
+                    #{note.category}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Content</f:facet>
+                    #{note.content}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Created At</f:facet>
+                    <h:outputFormat value="{0, date, dd/MM/yyyy:HH:mm}">
+                        <f:param value="#{note.createdAt}" />
+                    </h:outputFormat>
+                </h:column>
+            </h:dataTable>
+        </div>
+    </h:body>
+</html>

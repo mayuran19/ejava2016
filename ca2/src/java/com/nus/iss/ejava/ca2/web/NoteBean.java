@@ -83,4 +83,20 @@ public class NoteBean implements Serializable {
         
         return result;
     }
+    
+    public List<Note> getAllNotes(){
+        List<Note> results = noteDao.findAll();
+        
+        return results;
+    }
+    
+    public String getSocketURL(){
+        FacesContext fc = FacesContext.getCurrentInstance(); 
+        HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
+        String server = request.getServerName();
+        Integer port = request.getServerPort();
+        String contextPath = request.getContextPath();
+        String url = "ws://" + server + ":" + port.toString() + "" + contextPath + "/notes";
+        return url;
+    }
 }
