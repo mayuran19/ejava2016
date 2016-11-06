@@ -71,7 +71,6 @@ public class NoteBean implements Serializable {
         
         Note note = new Note(title, user, new Date(), Category.valueOf(category), content);
         noteDao.create(note);
-        getNotes();
         return "/secure/notes/list?faces-redirect=true";
     }
     
@@ -81,15 +80,6 @@ public class NoteBean implements Serializable {
         User user = (User) userDao.find(req.getRemoteUser());
         
         List<Note> result = noteDao.findByUserid(user.getUserId());
-        
-        for (Note n : result)
-        {
-            System.out.println("title: " + n.getTitle());
-            System.out.println("userid: " + n.getUser().getUserId());
-            System.out.println("content: " + n.getContent());
-            System.out.println("category: " + n.getCategory().toString());
-            System.out.println("");
-        }
         
         return result;
     }

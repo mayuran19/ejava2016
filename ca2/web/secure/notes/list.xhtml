@@ -28,5 +28,23 @@ and open the template in the editor.
                 </div>
             </nav>
         </h:form>
+        <h:dataTable value="#{noteBean.notes}" var="note">
+            <h:column>
+                <f:facet name="header">Title</f:facet>
+                #{note.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Category</f:facet>
+                #{note.category}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Content</f:facet>
+                #{note.content}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Created At</f:facet>
+                #{note.createdAt}
+            </h:column>
+        </h:dataTable>
     </h:body>
 </html>
