@@ -7,6 +7,7 @@ package com.nus.iss.ejava.ca2.dao;
 
 import com.nus.iss.ejava.ca2.constant.AppConstant;
 import com.nus.iss.ejava.ca2.entity.Note;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,5 +25,9 @@ public class NoteDao {
         //need to return error if userId already exist
         em.persist(note);
         return note;
+    }
+    
+    public List<Note> findByUserid (String userid){
+        return em.createNamedQuery("Note.findByUserid", Note.class).setParameter("userid", userid).getResultList();
     }
 }

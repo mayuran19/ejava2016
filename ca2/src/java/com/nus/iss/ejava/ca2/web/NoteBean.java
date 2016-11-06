@@ -12,6 +12,7 @@ import com.nus.iss.ejava.ca2.entity.Note;
 import com.nus.iss.ejava.ca2.entity.User;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -70,6 +71,26 @@ public class NoteBean implements Serializable {
         
         Note note = new Note(title, user, new Date(), Category.valueOf(category), content);
         noteDao.create(note);
+        getNotes();
         return "/secure/notes/list?faces-redirect=true";
+    }
+    
+    public List<Note> getNotes(){
+        FacesContext fc = FacesContext.getCurrentInstance(); 
+        HttpServletRequest req = (HttpServletRequest) fc.getExternalContext().getRequest();
+        User user = (User) userDao.find(req.getRemoteUser());
+        
+        List<Note> result = noteDao.findByUserid(user.getUserId());
+        
+        for (Note n : result)
+        {
+            System.out.println("title: " + n.getTitle());
+            System.out.println("userid: " + n.getUser().getUserId());
+            System.out.println("content: " + n.getContent());
+            System.out.println("category: " + n.getCategory().toString());
+            System.out.println("");
+        }
+        
+        return result;
     }
 }
