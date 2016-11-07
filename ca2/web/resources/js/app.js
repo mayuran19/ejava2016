@@ -7,6 +7,6 @@ $(function () {
     socket.onmessage = function (evt) {
         var data = JSON.parse(evt.data);
         var table = '<tr><td>' + data["title"] + '</td><td>' + data["category"] + '</td><td>' + data["content"] + '</td><td>' + data["createdAt"] + '</td></tr>';
-        $('#tbl-notes > tbody').append( table );
+        $('#tbl-notes > tbody').prepend( table );
     }
 })

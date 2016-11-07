@@ -84,8 +84,11 @@ public class NoteBean implements Serializable {
         return result;
     }
     
-    public List<Note> getAllNotes(){
-        List<Note> results = noteDao.findAll();
+    public List<Note> getNotesByCategory(){
+        FacesContext fc = FacesContext.getCurrentInstance(); 
+        HttpServletRequest req = (HttpServletRequest) fc.getExternalContext().getRequest();
+        this.category = req.getParameter("category");
+        List<Note> results = noteDao.findByCategory(category);
         
         return results;
     }
@@ -96,7 +99,14 @@ public class NoteBean implements Serializable {
         String server = request.getServerName();
         Integer port = request.getServerPort();
         String contextPath = request.getContextPath();
-        String url = "ws://" + server + ":" + port.toString() + "" + contextPath + "/notes";
+        String url = "ws://" + server + ":" + port.toString() + "" + contextPath + "/notes?category=" + request.getParameter("category");
         return url;
+    }
+    
+    public String getTitleString(){
+        FacesContext fc = FacesContext.getCurrentInstance(); 
+        HttpServletRequest req = (HttpServletRequest) fc.getExternalContext().getRequest();
+        this.category = req.getParameter("category");
+        return "SHOWING " + req.getParameter("category").toUpperCase();
     }
 }

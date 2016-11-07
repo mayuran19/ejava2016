@@ -28,6 +28,7 @@ import javax.persistence.TemporalType;
  */
 @NamedQueries({
     @NamedQuery(name = "Note.findByUserid", query = "select p.notes from User p where p.userId = :userid"),
+    @NamedQuery(name = "Note.findByCategory", query = "select note from Note note where note.category = :category"),
     @NamedQuery(name = "Note.findAll", query = "select note from Note note")
 })
 
