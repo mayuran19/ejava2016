@@ -28,13 +28,15 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Username:</label>
                                     <div class="col-sm-5">
-                                        <h:inputText value="#{registerBean.username}" class="form-control" />
+                                        <h:inputText id="username" value="#{registerBean.username}" class="form-control" required="true" requiredMessage="Username required"/>
+                                        <h:message for="username" style="color: red"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Password:</label>
                                     <div class="col-sm-3">
-                                        <h:inputSecret value="#{registerBean.password}" class="form-control" />
+                                        <h:inputSecret id="password" value="#{registerBean.password}" class="form-control"  required="true" requiredMessage="Password required"/>
+                                        <h:message for="password" style="color: red"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
