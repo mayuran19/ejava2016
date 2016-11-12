@@ -5,8 +5,12 @@
  */
 package com.nus.iss.ejava.ca3.config;
 
+import com.nus.iss.ejava.ca3.api.EPodResource;
+import java.util.HashSet;
+import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
 /**
  *
@@ -14,5 +18,11 @@ import javax.ws.rs.core.Application;
  */
 @ApplicationPath(value = "/")
 public class ApplicationConfig extends Application {
-    
+    public Set<Class<?>> getClasses() {
+        final Set<Class<?>> resources = new HashSet<Class<?>>();
+        // Add additional features such as support for Multipart.
+        resources.add(EPodResource.class);
+        resources.add(MultiPartFeature.class);
+        return resources;
+    }
 }
