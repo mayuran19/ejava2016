@@ -8,6 +8,7 @@ package com.nus.iss.ejava.ca3.api;
 
 import javax.ws.rs.QueryParam;
 import com.nus.iss.ejava.ca3.business.DeliveryBusiness;
+import com.nus.iss.ejava.ca3.business.PodBusiness;
 import com.nus.iss.ejava.ca3.entity.Delivery;
 import java.io.File;
 import java.util.List;
@@ -34,6 +35,9 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 public class EPodResource {
     @EJB
     private DeliveryBusiness deliveryBusiness;
+    
+    @EJB
+    private PodBusiness podBusiness;
 
     @GET
     @Path("api/item")
@@ -57,12 +61,18 @@ public class EPodResource {
 
     @Path("/callback")
     @GET
-    public Response receiveHQAck(@QueryParam("podId") String podId, @QueryParam("ack_id") String ackId) {
+    public Response receiveHQAck(@QueryParam("podId") String podId, @QueryParam("ackId") String ackId) {
         if (podId == null || ackId == null) {
-            return Response.ok(Response.Status.CONFLICT).build();
+            return Response.ok(Response.Status.BAD_REQUEST).build();
         } else {
-            //todo
-            return Response.ok().build();
+            Pod pod = podBusiness.find(Integer.parseInt(podId));
+            if(pod != null){
+                pod.setAckId(ackId);
+                podBusiness.update(pod);
+                return Response.ok().build();
+            } else {                
+                return Response.ok(Response.Status.NOT_FOUND).build();
+            }
         }
     }
     
