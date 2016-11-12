@@ -43,6 +43,15 @@ public class Pod implements Serializable {
     private Date deliveryDate;
     @Column(name = "ack_id")
     private String ackId;
+    
+    public Pod(){
+        
+    }
+    
+    public Pod (Delivery delivery)
+    {
+        this.delivery = delivery;
+    }
 
     public Integer getPodId() {
         return podId;
