@@ -21,4 +21,10 @@ public class DeliveryBusiness {
     public List<Delivery> getAll(){
         return em.createNamedQuery("Delivery.findAll", Delivery.class).getResultList();
     }
+    
+    public Delivery create(Delivery delivery)
+    {
+        em.persist(delivery);
+        return delivery;
+    }
 }
