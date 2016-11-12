@@ -40,6 +40,19 @@ public class Delivery implements Serializable {
     private Date createDate;
     @OneToOne(mappedBy = "delivery")
     private Pod pod;
+    
+    public Delivery()
+    {
+        
+    }
+    
+    public Delivery (String name, String address, String phone)
+    {
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.createDate = new Date();
+    }
 
     public Integer getPkgId() {
         return pkgId;
