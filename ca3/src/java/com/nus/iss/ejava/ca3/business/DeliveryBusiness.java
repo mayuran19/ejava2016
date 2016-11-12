@@ -17,13 +17,15 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless(name = "deliveryBusiness")
 public class DeliveryBusiness {
-    @PersistenceContext(unitName = "deliveryPU") EntityManager em;
-    public List<Delivery> getAll(){
+
+    @PersistenceContext(unitName = "deliveryPU")
+    EntityManager em;
+
+    public List<Delivery> getAll() {
         return em.createNamedQuery("Delivery.findAll", Delivery.class).getResultList();
     }
-    
-    public Delivery create(Delivery delivery)
-    {
+
+    public Delivery create(Delivery delivery) {
         em.persist(delivery);
         return delivery;
     }
