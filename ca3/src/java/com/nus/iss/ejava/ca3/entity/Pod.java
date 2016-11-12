@@ -29,7 +29,7 @@ import javax.persistence.TemporalType;
 public class Pod implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pod_id")
     private Integer podId;
     @OneToOne()
@@ -43,6 +43,15 @@ public class Pod implements Serializable {
     private Date deliveryDate;
     @Column(name = "ack_id")
     private String ackId;
+    
+    public Pod(){
+        
+    }
+    
+    public Pod (Delivery delivery)
+    {
+        this.delivery = delivery;
+    }
 
     public Integer getPodId() {
         return podId;
