@@ -59,14 +59,18 @@ public class EPodResource {
 
     @Path("/callback")
     @GET
-    public Response receiveHQAck(@QueryParam("podId") String podId, @QueryParam("ack_id") String ackId) {
+    public Response receiveHQAck(@QueryParam("podId") String podId, @QueryParam("ackId") String ackId) {
         if (podId == null || ackId == null) {
             return Response.ok(Response.Status.BAD_REQUEST).build();
         } else {
             Pod pod = podBusiness.find(Integer.parseInt(podId));
-            pod.setAckId(ackId);
-            podBusiness.update(pod);
-            return Response.ok().build();
+            if(pod != null){
+                pod.setAckId(ackId);
+                podBusiness.update(pod);
+                return Response.ok().build();
+            } else {                
+                return Response.ok(Response.Status.NOT_FOUND).build();
+            }
         }
     }
 }
