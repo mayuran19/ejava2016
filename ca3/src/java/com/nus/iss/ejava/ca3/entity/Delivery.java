@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "delivery")
-@NamedQueries(@NamedQuery(name = "Delivery.findAll", query = "select d from Delivery d"))
+@NamedQueries(@NamedQuery(name = "Delivery.findAll", query = "select d from Delivery d where d.pod.ackId is null"))
 public class Delivery implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

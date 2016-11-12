@@ -23,6 +23,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import com.nus.iss.ejava.ca3.entity.Pod;
+import com.nus.iss.ejava.ca3.hq.PodUploadManager;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -51,7 +52,7 @@ public class EPodResource {
         list.stream().map(d -> {
             return Json.createObjectBuilder()
                     .add("teamId", d.getPod().getPodId())
-                    .add("podId", "")
+                    .add("podId", d.getPod().getPodId())
                     .add("name", d.getName())
                     .add("address", d.getAddress())
                     .add("phone", d.getPhone())
@@ -94,6 +95,10 @@ public class EPodResource {
         pod.setImage(readFully(image));
         pod.setNote(note);
         podBusiness.update(pod);
+        
+        PodUploadManager podUploadManager = new PodUploadManager();
+        podUploadManager.setPodBusiness(podBusiness);
+        podUploadManager.podUpload(pod);
         
         return Response.ok().build();
     }
