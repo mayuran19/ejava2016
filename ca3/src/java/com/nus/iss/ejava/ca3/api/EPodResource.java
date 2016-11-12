@@ -8,6 +8,7 @@ package com.nus.iss.ejava.ca3.api;
 import com.nus.iss.ejava.ca3.business.DeliveryBusiness;
 import com.nus.iss.ejava.ca3.entity.Delivery;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -22,8 +23,7 @@ import javax.ws.rs.core.Response;
  */
 @Path("/")
 public class EPodResource {
-
-    @Inject
+    @EJB
     private DeliveryBusiness deliveryBusiness;
 
     @GET
