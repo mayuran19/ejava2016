@@ -5,8 +5,10 @@
  */
 package com.nus.iss.ejava.ca3.hq;
 
+import com.nus.iss.ejava.ca3.business.PodBusiness;
 import com.nus.iss.ejava.ca3.constant.AppConstant;
 import com.nus.iss.ejava.ca3.entity.Pod;
+import javax.ejb.EJB;
 
 /**
  *
@@ -14,12 +16,15 @@ import com.nus.iss.ejava.ca3.entity.Pod;
  */
 public class PodUploadManager {
 
+    @EJB
+    PodBusiness podBusiness;
+
     public void podUpload(Pod pod) {
         try {
             while (receivedAcknowledge(pod.getPodId())) {
                 Thread t = new Thread(new PodUpload(pod));
                 t.start();
-                Thread.sleep(AppConstant.HQ_ACK_WAIT_PERIOD);
+                Thread.sleep(AppConstant.HQ_ACK_WAIT_PERIOD);//Wait for ack from HQ
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -27,14 +32,20 @@ public class PodUploadManager {
 
     }
 
+    private boolean receivedAcknowledge(Integer podId) {
+        Pod pod = podBusiness.find(podId);
+        boolean acknowledged = false;
+        if (pod != null && pod.getAckId() != null) {
+            acknowledged = true;
+        }
+
+        return acknowledged;
+    }
+
+    // This method implemented for development pupose only. Need to be removed
     public static void main(String[] args) {
         Pod pod = new Pod();
         PodUploadManager manager = new PodUploadManager();
         manager.podUpload(pod);
     }
-
-    private boolean receivedAcknowledge(Integer podId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
