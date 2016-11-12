@@ -6,14 +6,11 @@
 package com.nus.iss.ejava.ca3.api;
 
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import com.nus.iss.ejava.ca3.business.DeliveryBusiness;
 import com.nus.iss.ejava.ca3.entity.Delivery;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;

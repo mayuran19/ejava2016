@@ -29,7 +29,7 @@ import javax.persistence.TemporalType;
 public class Delivery implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pkg_id")
     private Integer pkgId;
     private String name;
