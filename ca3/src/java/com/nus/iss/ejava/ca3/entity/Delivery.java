@@ -12,6 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,6 +25,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "delivery")
+@NamedQueries(@NamedQuery(name = "Delivery.findAll", query = "select d from Delivery d"))
 public class Delivery implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,6 +38,8 @@ public class Delivery implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_date")
     private Date createDate;
+    @OneToOne(mappedBy = "delivery")
+    private Pod pod;
 
     public Integer getPkgId() {
         return pkgId;
@@ -73,5 +79,13 @@ public class Delivery implements Serializable {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public Pod getPod() {
+        return pod;
+    }
+
+    public void setPod(Pod pod) {
+        this.pod = pod;
     }
 }
