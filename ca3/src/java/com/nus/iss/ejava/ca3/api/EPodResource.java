@@ -48,8 +48,8 @@ public class EPodResource {
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
         list.stream().map(d -> {
             return Json.createObjectBuilder()
-                    .add("teamId", "")
-                    .add("podId", d.getPod().getPodId())
+                    .add("teamId", d.getPod().getPodId())
+                    .add("podId", "")
                     .add("name", d.getName())
                     .add("address", d.getAddress())
                     .add("phone", d.getPhone())

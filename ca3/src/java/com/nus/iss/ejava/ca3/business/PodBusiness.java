@@ -29,4 +29,10 @@ public class PodBusiness {
         em.merge(pod);
         em.flush();
     }
+    
+    public Pod create(Pod pod)
+    {
+        em.persist(pod);
+        return pod;
+    }
 }

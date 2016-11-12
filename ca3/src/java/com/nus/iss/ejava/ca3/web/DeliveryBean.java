@@ -6,8 +6,11 @@
 package com.nus.iss.ejava.ca3.web;
 
 import com.nus.iss.ejava.ca3.business.DeliveryBusiness;
+import com.nus.iss.ejava.ca3.business.PodBusiness;
 import com.nus.iss.ejava.ca3.entity.Delivery;
+import com.nus.iss.ejava.ca3.entity.Pod;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -21,6 +24,7 @@ import javax.inject.Named;
 public class DeliveryBean implements Serializable{
     
     @EJB DeliveryBusiness deliveryBusiness;
+    @EJB PodBusiness podBusiness;
     
     private static final long serialVersionUID = 1L;
     private String name;
@@ -58,9 +62,18 @@ public class DeliveryBean implements Serializable{
         System.out.println("phone: " + phone);
         
         Delivery delivery = new Delivery(name, address, phone);
+        Pod pod = new Pod(delivery);
         deliveryBusiness.create(delivery);
+        podBusiness.create(pod);
         
         return null;
+    }
+    
+    public List<Delivery> getDeliveries(){
+        
+        List<Delivery> deliveries = deliveryBusiness.getAll();
+        
+        return deliveries;
     }
     
 }
