@@ -57,6 +57,7 @@ public class EPodResource {
     @Path("/callback")
     @GET
     public Response receiveHQAck(@QueryParam("podId") String podId, @QueryParam("ackId") String ackId) {
+        System.out.println("Received Ack..podId: "+ podId + " ackId: "+ ackId);
         if (podId == null || ackId == null) {
             return Response.ok(Response.Status.BAD_REQUEST).build();
         } else {
