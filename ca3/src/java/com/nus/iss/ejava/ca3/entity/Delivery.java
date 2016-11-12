@@ -29,7 +29,7 @@ import javax.persistence.TemporalType;
 public class Delivery implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pkg_id")
     private Integer pkgId;
     private String name;
@@ -40,6 +40,19 @@ public class Delivery implements Serializable {
     private Date createDate;
     @OneToOne(mappedBy = "delivery")
     private Pod pod;
+    
+    public Delivery()
+    {
+        
+    }
+    
+    public Delivery (String name, String address, String phone)
+    {
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.createDate = new Date();
+    }
 
     public Integer getPkgId() {
         return pkgId;
