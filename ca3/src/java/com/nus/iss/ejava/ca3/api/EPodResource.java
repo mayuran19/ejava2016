@@ -5,9 +5,14 @@
  */
 package com.nus.iss.ejava.ca3.api;
 
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
 import com.nus.iss.ejava.ca3.business.DeliveryBusiness;
 import com.nus.iss.ejava.ca3.entity.Delivery;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -20,10 +25,11 @@ import javax.ws.rs.core.Response;
  *
  * @author mayuran
  */
+
+
 @Path("/")
 public class EPodResource {
-
-    @Inject
+    @EJB
     private DeliveryBusiness deliveryBusiness;
 
     @GET
@@ -44,5 +50,16 @@ public class EPodResource {
         });
         JsonArray array = arrayBuilder.build();
         return Response.ok(array).build();
+    }
+
+    @Path("/callback")
+    @GET
+    public Response receiveHQAck(@QueryParam("podId") String podId, @QueryParam("ack_id") String ackId) {
+        if (podId == null || ackId == null) {
+            return Response.ok(Response.Status.CONFLICT).build();
+        } else {
+            //todo
+            return Response.ok().build();
+        }
     }
 }

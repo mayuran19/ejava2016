@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author mayuran
  */
-@Stateless
+@Stateless(name = "deliveryBusiness")
 public class DeliveryBusiness {
     @PersistenceContext(unitName = "deliveryPU") EntityManager em;
     public List<Delivery> getAll(){
