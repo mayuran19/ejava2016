@@ -22,11 +22,14 @@ public class DeliveryBusiness {
     EntityManager em;
 
     public List<Delivery> getAll() {
+        List<Delivery> list = em.createNamedQuery("Delivery.findAll", Delivery.class).getResultList();
+        list.stream().forEach(d -> {d.getPod().getPodId();});
         return em.createNamedQuery("Delivery.findAll", Delivery.class).getResultList();
     }
 
     public Delivery create(Delivery delivery) {
         em.persist(delivery);
+        em.flush();
         return delivery;
     }
 }

@@ -63,14 +63,13 @@ public class DeliveryBean implements Serializable{
         
         Delivery delivery = new Delivery(name, address, phone);
         Pod pod = new Pod(delivery);
-        deliveryBusiness.create(delivery);
         podBusiness.create(pod);
         
         return null;
     }
     
     public List<Delivery> getDeliveries(){
-        
+        System.out.println("ddddddd");
         List<Delivery> deliveries = deliveryBusiness.getAll();
         
         return deliveries;

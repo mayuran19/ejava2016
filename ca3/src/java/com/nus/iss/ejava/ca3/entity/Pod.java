@@ -7,6 +7,7 @@ package com.nus.iss.ejava.ca3.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +16,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -32,7 +35,7 @@ public class Pod implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pod_id")
     private Integer podId;
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "pkg_id", referencedColumnName = "pkg_id")
     private Delivery delivery;
     private String note;

@@ -5,9 +5,7 @@
  */
 package com.nus.iss.ejava.ca3.business;
 
-import com.nus.iss.ejava.ca3.entity.Delivery;
 import com.nus.iss.ejava.ca3.entity.Pod;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,21 +16,22 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class PodBusiness {
-    
-    @PersistenceContext(unitName = "deliveryPU") EntityManager em;
-    
-    public Pod find(Integer podId){
+
+    @PersistenceContext(unitName = "deliveryPU")
+    EntityManager em;
+
+    public Pod find(Integer podId) {
         return em.find(Pod.class, podId);
     }
-    
-    public void update(Pod pod){
+
+    public void update(Pod pod) {
         em.merge(pod);
         em.flush();
     }
-    
-    public Pod create(Pod pod)
-    {
+
+    public Pod create(Pod pod) {
         em.persist(pod);
+        em.flush();
         return pod;
     }
 }

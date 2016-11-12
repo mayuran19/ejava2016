@@ -8,6 +8,7 @@ package com.nus.iss.ejava.ca3.api;
 import javax.ws.rs.QueryParam;
 import com.nus.iss.ejava.ca3.business.DeliveryBusiness;
 import com.nus.iss.ejava.ca3.business.PodBusiness;
+import com.nus.iss.ejava.ca3.constant.AppConstant;
 import com.nus.iss.ejava.ca3.entity.Delivery;
 import com.nus.iss.ejava.ca3.entity.Pod;
 import java.io.File;
@@ -51,7 +52,7 @@ public class EPodResource {
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
         list.stream().map(d -> {
             return Json.createObjectBuilder()
-                    .add("teamId", d.getPod().getPodId())
+                    .add("teamId", AppConstant.TEAM_ID)
                     .add("podId", d.getPod().getPodId())
                     .add("name", d.getName())
                     .add("address", d.getAddress())
