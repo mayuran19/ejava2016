@@ -10,7 +10,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import com.nus.iss.ejava.ca3.business.DeliveryBusiness;
+import com.nus.iss.ejava.ca3.business.PodBusiness;
 import com.nus.iss.ejava.ca3.entity.Delivery;
+import com.nus.iss.ejava.ca3.entity.Pod;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -31,6 +33,9 @@ import javax.ws.rs.core.Response;
 public class EPodResource {
     @EJB
     private DeliveryBusiness deliveryBusiness;
+    
+    @EJB
+    private PodBusiness podBusiness;
 
     @GET
     @Path("api/item")
@@ -56,9 +61,11 @@ public class EPodResource {
     @GET
     public Response receiveHQAck(@QueryParam("podId") String podId, @QueryParam("ack_id") String ackId) {
         if (podId == null || ackId == null) {
-            return Response.ok(Response.Status.CONFLICT).build();
+            return Response.ok(Response.Status.BAD_REQUEST).build();
         } else {
-            //todo
+            Pod pod = podBusiness.find(Integer.parseInt(podId));
+            pod.setAckId(ackId);
+            podBusiness.update(pod);
             return Response.ok().build();
         }
     }
