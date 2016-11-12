@@ -5,7 +5,11 @@
  */
 package com.nus.iss.ejava.ca3.business;
 
+import java.util.List;
 import javax.ejb.Stateless;
+import com.nus.iss.ejava.ca3.entity.Delivery;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -13,5 +17,8 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class DeliveryBusiness {
-    
+    @PersistenceContext(unitName = "deliveryPU") EntityManager em;
+    public List<Delivery> getAll(){
+        return em.createNamedQuery("Delivery.findAll", Delivery.class).getResultList();
+    }
 }

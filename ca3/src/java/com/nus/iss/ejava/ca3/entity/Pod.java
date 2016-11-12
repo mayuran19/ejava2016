@@ -13,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -31,7 +32,8 @@ public class Pod implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "pod_id")
     private Integer podId;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne()
+    @JoinColumn(name = "pkg_id", referencedColumnName = "pkg_id")
     private Delivery delivery;
     private String note;
     @Lob
