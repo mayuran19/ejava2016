@@ -7,6 +7,7 @@ package com.nus.iss.ejava.ca3.hq;
 
 import com.nus.iss.ejava.ca3.business.PodBusiness;
 import com.nus.iss.ejava.ca3.constant.AppConstant;
+import com.nus.iss.ejava.ca3.entity.Delivery;
 import com.nus.iss.ejava.ca3.entity.Pod;
 import javax.ejb.EJB;
 
@@ -43,9 +44,13 @@ public class PodUploadManager {
     }
 
     // This method implemented for development pupose only. Need to be removed
-    public static void main(String[] args) {
-        Pod pod = new Pod();
-        PodUploadManager manager = new PodUploadManager();
-        manager.podUpload(pod);
-    }
+//    public static void main(String[] args) {
+//        Pod pod = new Pod();
+//        pod.setPodId(1);
+//        pod.setDelivery(new Delivery("dilivery1", "add", "123456"));
+//        pod.setImage(new byte[10]);
+//        pod.setNote("Some info");
+//        PodUploadManager manager = new PodUploadManager();
+//        manager.podUpload(pod);
+//    }
 }
